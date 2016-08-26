@@ -35,3 +35,14 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# IDEs
+.idea/
+.sublime*
+.vscode/
+
+# Ignore typings folder
+typings
+
+# Source maps for JS builds
+*.js.map
