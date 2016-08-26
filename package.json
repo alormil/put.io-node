@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "A Node.js wrapper for put.io APIv2 http://put.io",
   "main": "js/index.js",
+  "typings": "js/index.d.ts",
   "scripts": {
     "postinstall": "typings install",
     "preversion": "npm run compile && npm test",
