@@ -8,7 +8,7 @@
     "preversion": "npm run compile && npm test",
     "precompile": "npm run clean",
     "compile": "tsc",
-    "test": "env NODE_ENV=test mocha js/tests",
+    "test": "env NODE_ENV=test ./node_modules/.bin/mocha --recursive js/tests",
     "clean": "del-cli js/",
     "lint": "tslint 'ts/**/*.ts?(x)' || exit 1"
   },
