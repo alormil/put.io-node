@@ -8,7 +8,7 @@ export class Account extends PutIoHelper {
      * 
      */
     public getAccountInfo(): string {
-        return 'OK';
+        return this.getData('account/info', []);
     }
 
     /**
