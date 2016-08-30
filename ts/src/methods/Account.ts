@@ -7,7 +7,7 @@ export class Account extends PutIoHelper {
      * Returns information about user account. subtitle_languages is a list of ISO639-2 codes.
      * 
      */
-    public getAccountInfo(): string {
+    public getAccountInfo(): Promise<string> {
         return this.getData('account/info', []);
     }
 

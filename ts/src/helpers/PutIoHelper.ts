@@ -10,15 +10,21 @@ export class PutIoHelper {
         this.putioClient = client;
     }
 
-    protected getData(apiEndpoint: string, apiParameters: string[]): string {
-        const url = `${this.API_URL}apiEndpoint?oauth_token=${this.putioClient.oAuthToken}`;
-        request(url, (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-                console.log(body);
-                return <string> body;
-            } else {
-                return <string> error;
+    protected getData(apiEndpoint: string, apiParameters: string[]): Promise<string> {
+        const options = {
+            url: `${this.API_URL}${apiEndpoint}?oauth_token=${this.putioClient.oAuthToken}`,
+            headers: {
+                'Content-Type': 'application/json'
             }
+        };
+        return new Promise<string>((resolve, reject) => {
+            request(options, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    resolve(body);
+                } else {
+                    reject(error);
+                }
+            });
         });
     }
 
