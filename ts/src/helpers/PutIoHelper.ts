@@ -10,25 +10,48 @@ export class PutIoHelper {
         this.putioClient = client;
     }
 
-    protected getData(apiEndpoint: string, apiParameters: string[]): Promise<string> {
+    /**
+     * 
+     * Executes GET & POST requests to put.io's API and also passes the proper paramaters
+     * 
+     * @param requestType: Type of API call that is made, can either be GET or POST
+     * @param apiEndpoint: Endpoint of the put.io API that will be called
+     * @param apiParameters: API parameters that will be passed to API call
+     */
+    protected requestData(requestType: string, apiEndpoint: string, apiParameters: string[]): Promise<string> {
+        // URL that will be used to make the API is constructured
+        let apiCall = `${this.API_URL}${apiEndpoint}?oauth_token=${this.putioClient.oAuthToken}`;
+        apiParameters.forEach(element => {
+            apiCall = apiCall.concat(element);
+        });
+        // Format the request so that we only return JSON response
         const options = {
-            url: `${this.API_URL}${apiEndpoint}?oauth_token=${this.putioClient.oAuthToken}`,
+            url: `${apiCall}`,
             headers: {
                 'Content-Type': 'application/json'
             }
         };
-        return new Promise<string>((resolve, reject) => {
-            request(options, (error, response, body) => {
-                if (!error && response.statusCode === 200) {
-                    resolve(body);
-                } else {
-                    reject(error);
-                }
+        // Return Promise object with GET or POST response
+        if (requestType === 'GET') {
+            return new Promise<string>((resolve, reject) => {
+                request.get(options, (error, response, body) => {
+                    if (!error && response.statusCode === 200) {
+                        resolve(body);
+                    } else {
+                        reject(error);
+                    }
+                });
             });
-        });
-    }
-
-    protected postData(apiEndpoint: string, apiParameters: string[]): string {
-        return 'Constructing HTTP POST Request ...';
+        } else {
+            return new Promise<string>((resolve, reject) => {
+                request.post(options, (error, response, body) => {
+                    if (!error && response.statusCode === 200) {
+                        resolve(body);
+                    } else {
+                        reject(error);
+                    }
+                });
+            });
+        }
     }
 }
