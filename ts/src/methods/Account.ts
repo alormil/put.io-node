@@ -8,7 +8,7 @@ export class Account extends PutIoHelper {
      * 
      */
     public getAccountInfo(): Promise<string> {
-        return this.getData('account/info', []);
+        return this.requestData('GET', 'account/info', []);
     }
 
     /**
@@ -16,8 +16,8 @@ export class Account extends PutIoHelper {
      * Returns User preferences.
      * 
      */
-    public getAccountSettings(): string {
-        return 'OK';
+    public getAccountSettings(): Promise<string> {
+        return this.requestData('GET', 'account/settings', []);
     }
 
     /**

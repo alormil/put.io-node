@@ -6,10 +6,12 @@ export class Files extends PutIoHelper {
      * 
      * Lists files in a folder.
      * 
-     * @param parentId: D of the folder you’d like to list. This defaults to the root directory (which has ID number 0).
+     * @param parentId: ID of the folder you’d like to list. This defaults to the root directory (which has ID number 0).
      */
-    public getFilesList(parentId: number = 0): string {
-        return 'OK';
+    public getFilesList(parentId: number = 0): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&parent_id=${parentId}`);
+        return this.requestData('GET', 'files/list', paramaters);
     }
 
     /**
