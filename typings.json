@@ -5,6 +5,7 @@
     "chai": "registry:dt/chai#3.4.0+20160601211834",
     "form-data": "registry:dt/form-data#0.0.0+20160724024111",
     "mocha": "registry:dt/mocha#2.2.5+20160720003353",
+    "nock": "registry:dt/nock#0.54.0+20160613160405",
     "node": "registry:dt/node#6.0.0+20160826120425",
     "request": "registry:dt/request#0.0.0+20160726020908"
   }
