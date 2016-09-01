@@ -6,16 +6,16 @@ export class Friends extends PutIoHelper {
      * 
      * Lists friends.
      */
-    public getFriendsList(): string {
-        return 'OK';
+    public getFriendsList(): Promise<string> {
+        return this.requestData('GET', 'friends/list', []);
     }
 
     /**
      * 
      * Lists incoming friend requests.
      */
-    public getFriendRequests(): string {
-        return 'OK';
+    public getFriendRequests(): Promise<string> {
+        return this.requestData('GET', 'friends/waiting-requests', []);
     }
 
     /**
@@ -24,8 +24,8 @@ export class Friends extends PutIoHelper {
      * 
      * @param username: friend's username
      */
-    public sendFriendRequest(username: string): string {
-        return 'OK';
+    public sendFriendRequest(username: string): Promise<string> {
+        return this.requestData('POST', `friends/${username}/request`, []);
     }
 
     /**
@@ -34,8 +34,8 @@ export class Friends extends PutIoHelper {
      * 
      * @param username: friend's username
      */
-    public approveFriendRequest(username: string): string {
-        return 'OK';
+    public approveFriendRequest(username: string): Promise<string> {
+        return this.requestData('POST', `friends/${username}/approve`, []);
     }
 
     /**
@@ -44,8 +44,8 @@ export class Friends extends PutIoHelper {
      * 
      * @param username: friend's username
      */
-    public denyFriendRequest(username: string): string {
-        return 'OK';
+    public denyFriendRequest(username: string): Promise<string> {
+        return this.requestData('POST', `friends/${username}/deny`, []);
     }
 
     /**
@@ -54,7 +54,7 @@ export class Friends extends PutIoHelper {
      * 
      * @param username: friend's username
      */
-    public unfriend(username: string): string {
-        return 'OK';
+    public unfriend(username: string): Promise<string> {
+        return this.requestData('POST', `friends/${username}/unfriend`, []);
     }
 }

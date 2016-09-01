@@ -8,16 +8,18 @@ export class Zips extends PutIoHelper {
      * 
      * @param fileIds: Array of file ids. Ex: [1,2,3,4]
      */
-    public createZip(fileIds: number[]): string {
-        return 'OK';
+    public createZip(fileIds: number[]): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&file_ids=${fileIds.toString()}`);
+        return this.requestData('POST', 'zips/create', paramaters);
     }
 
     /**
      * 
      * Lists active zip files.
      */
-    public getZipsList(): string {
-        return 'OK';
+    public getZipsList(): Promise<string> {
+        return this.requestData('GET', 'zips/list', []);
     }
 
     /**
@@ -29,7 +31,7 @@ export class Zips extends PutIoHelper {
      * 
      * @param id: ID of the zip file process
      */
-    public getZipId(id: number): string {
-        return 'OK';
+    public getZipId(id: number): Promise<string> {
+        return this.requestData('GET', `zips/${id}`, []);
     }
 }

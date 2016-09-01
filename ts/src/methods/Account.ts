@@ -28,7 +28,17 @@ export class Account extends PutIoHelper {
      * @param isInvisible: Optional. Boolean value (true or false). Enables invisible mode.
      * @param subtitleLanguages: Optional. String of comma separated ISO639-2 codes (e.g., ‘eng,tr’). Maximum length of choices is 2.
      */
-    public setAccountSetting(defaultDownloadFolder ?: number, isInvisible ?: boolean, subtitleLanguages ?: string): string {
-        return 'OK';
+    public setAccountSetting(defaultDownloadFolder ?: number, isInvisible ?: boolean, subtitleLanguages ?: string): Promise<string> {
+        const paramaters: string[] = [];
+        if (defaultDownloadFolder !== undefined) {
+            paramaters.push(`&default_download_folder=${defaultDownloadFolder}`);
+        }
+        if (isInvisible !== undefined) {
+            paramaters.push(`&is_invisible=${isInvisible}`);
+        }
+        if (subtitleLanguages !== undefined) {
+            paramaters.push(`&subtitle_languages=${subtitleLanguages}`);
+        }
+        return this.requestData('POST', 'account/settings', paramaters);
     }
 }

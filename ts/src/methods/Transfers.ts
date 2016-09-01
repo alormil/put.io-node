@@ -6,8 +6,8 @@ export class Transfers extends PutIoHelper {
      * 
      * Lists active transfers. If transfer is completed, it is removed from the list.
      */
-    public getTransfersList(): string {
-        return 'OK';
+    public getTransfersList(): Promise<string> {
+        return this.requestData('GET', 'transfers/list', []);
     }
 
     /**
@@ -20,16 +20,25 @@ export class Transfers extends PutIoHelper {
      * @param callbackUrl: We POST the transfer’s metadata to this URL after the download is finished. (optional)
      * 
      */
-    public addTransfer(url: string, saveParentId: number = 0, extract: boolean = false, callbackUrl ?: string): string {
-        return 'OK';
+    public addTransfer(url: string, saveParentId: number = 0, extract: boolean = false, callbackUrl ?: string): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&url=${url}`);
+        paramaters.push(`&save_parent_id=${saveParentId}`);
+        paramaters.push(`&extract=${extract}`);
+        if (callbackUrl !== undefined) {
+            paramaters.push(`&callback_url=${callbackUrl}`);
+        }
+        return this.requestData('POST', 'transfers/add', paramaters);
     }
 
     /**
      * 
      * Returns a transfer’s properties.
+     * 
+     * @param id: ID of the failed download.
      */
-    public getTransferId(): string {
-        return 'OK';
+    public getTransferId(id: number): Promise<string> {
+        return this.requestData('GET', `transfers/${id}`, []);
     }
 
     /**
@@ -38,8 +47,10 @@ export class Transfers extends PutIoHelper {
      * 
      * @param id: ID of the failed download.
      */
-    public retryTransfer(id: number): string {
-        return 'OK';
+    public retryTransfer(id: number): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&id=${id}`);
+        return this.requestData('POST', 'transfers/retry', paramaters);
     }
 
     /**
@@ -48,15 +59,17 @@ export class Transfers extends PutIoHelper {
      * 
      * @param transferIds: Array of Transfer ids. Ex: [1,2,3,4]
      */
-    public cancelTransfers(transferIds: number[]): string {
-        return 'OK';
+    public cancelTransfers(transferIds: number[]): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&transfer_ids=${transferIds.toString()}`);
+        return this.requestData('POST', 'transfers/cancel', paramaters);
     }
 
     /**
      * 
      * Clean completed transfers from the list.
      */
-    public cleanTransfers(): string {
-        return 'OK';
+    public cleanTransfers(): Promise<string> {
+        return this.requestData('POST', 'transfers/clean', []);
     }
 }

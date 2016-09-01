@@ -39,8 +39,8 @@ export class Files extends PutIoHelper {
      *          Searches your files and items shared with the word jazz in its title which are converted to mp4.
      * 
      */
-    public searchFiles(query: string, page: number = 1): string {
-        return 'OK';
+    public searchFiles(query: string, page: number = 1): Promise<string> {
+       return this.requestData('GET', `files/search/${query}/page/${page}`, []);
     }
 
     /**
@@ -56,8 +56,12 @@ export class Files extends PutIoHelper {
      * Example CURL line
      *      curl -i -F file=@/path/to/the/file 'https://upload.put.io/v2/files/upload?oauth_token=KD8D03MF'
      */
-    public uploadFile(file: string, filename: string, parentId: number = 0): string {
-        return 'OK';
+    public uploadFile(file: string, filename: string, parentId: number = 0): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&file=${file}`);
+        paramaters.push(`&filename=${filename}`);
+        paramaters.push(`&parent_id=${parentId}`);
+        return this.requestData('POST', 'files/upload', paramaters);
     }
 
     /**
@@ -67,18 +71,24 @@ export class Files extends PutIoHelper {
      * @param name: Name of the new folder.
      * @param parentId: Location of the new folder.
      */
-    public createFolder(name: string, parentId: string): string {
-        return 'OK';
+    public createFolder(name: string, parentId: string): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&name=${name}`);
+        paramaters.push(`&parent_id=${parentId}`);
+        return this.requestData('POST', 'files/create-folder', paramaters);
     }
 
     /**
      * 
      * Returns a file’s properties.
      * 
+     * @param fileID: ID of the file to retrieve
      * @param parentId: ID of the folder you’d like to list. This defaults to the root directory (which has ID number 0).
      */
-    public getFileId(parentId: number = 0): string {
-        return 'OK';
+    public getFileId(fileID: number, parentId: number = 0): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&parent_id=${parentId}`);
+        return this.requestData('GET', `files/${fileID}`, paramaters);
     }
 
     /**
@@ -87,8 +97,10 @@ export class Files extends PutIoHelper {
      * 
      * @param fileIds: Array of file ids. Ex: [1,2,3,4]
      */
-    public deleteFiles(fileIds: number[]): string {
-        return 'OK';
+    public deleteFiles(fileIds: number[]): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&file_ids=${fileIds.toString()}`);
+        return this.requestData('POST', 'files/delete', paramaters);
     }
 
     /**
@@ -98,8 +110,11 @@ export class Files extends PutIoHelper {
      * @param fileId: ID of the file to be renamed.
      * @param name: Name of the new file.
      */
-    public renameFile(fileId: number, name: string): string {
-        return 'OK';
+    public renameFile(fileId: number, name: string): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&file_id=${fileId}`);
+        paramaters.push(`&name=${name}`);
+        return this.requestData('POST', 'files/rename', paramaters);
     }
 
     /**
@@ -109,8 +124,11 @@ export class Files extends PutIoHelper {
      * @param fileIds: Array of file ids. Ex: [1,2,3,4] 
      * @param parentId: Location of the destination folder.
      */
-    public moveFiles(fileIds: number[], parentId: number): string {
-        return 'OK';
+    public moveFiles(fileIds: number[], parentId: number): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&file_ids=${fileIds.toString()}`);
+        paramaters.push(`&parent_id=${parentId}`);
+        return this.requestData('POST', 'files/move', paramaters);
     }
 
     /**
@@ -119,16 +137,16 @@ export class Files extends PutIoHelper {
      * 
      * @param id: ID of the files to be converted.
      */
-    public convertToMP4(id: number): string {
-        return 'OK';
+    public convertToMP4(id: number): Promise<string> {
+        return this.requestData('POST', `files/${id}/mp4`, []);
     }
 
     /**
      * 
      * @param id: ID of the files to be converted.
      */
-    public getMP4Status(id: number): string {
-        return 'OK';
+    public getMP4Status(id: number): Promise<string> {
+        return this.requestData('GET', `files/${id}/mp4`, []);
     }
 
     /**
@@ -137,8 +155,8 @@ export class Files extends PutIoHelper {
      * 
      * @param id: ID of the file to download
      */
-    public downloadFile(is: number): string {
-        return 'OK';
+    public downloadFile(id: number): Promise<string> {
+        return this.requestData('GET', `files/${id}/download`, []);
     }
 
     /**
@@ -148,8 +166,11 @@ export class Files extends PutIoHelper {
      * @param fileIds: Array of file ids. Ex: [1,2,3,4]
      * @param friends: Array of names ‘everyone’ or user names of friends. Ex: ['johndoe','janedoe'']
      */
-    public shareFiles(fileIds: number[], friends: string[]): string {
-        return 'OK';
+    public shareFiles(fileIds: number[], friends: string[]): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&file_ids=${fileIds.toString()}`);
+        paramaters.push(`&friends=${friends.toString()}`);
+        return this.requestData('POST', 'files/share', paramaters);
     }
 
     /**
@@ -157,8 +178,8 @@ export class Files extends PutIoHelper {
      * Returns list of shared files and share information.
      * “shared_with” value in response may be “everyone” or an integer indicating number of people file is shared with (EX: “everyone” or 2)
      */
-    public getSharedFiles(): string {
-        return 'OK';
+    public getSharedFiles(): Promise<string> {
+        return this.requestData('GET', '/files/shared', []);
     }
 
     /**
@@ -167,8 +188,8 @@ export class Files extends PutIoHelper {
      * 
      * @param id: ID of file
      */
-    public getUsersFileIsSharedWith(id: number): string {
-        return 'OK';
+    public getUsersFileIsSharedWith(id: number): Promise<string> {
+        return this.requestData('GET', `/files/${id}/shared-with`, []);
     }
 
     /**
@@ -178,8 +199,10 @@ export class Files extends PutIoHelper {
      * @param id: ID of file
      * @param shares: Array of string ‘everyone’ or share ids. Ex: [1,2,3,4]
      */
-    public unshareFile(id: number, shares: string[]): string {
-        return 'OK';
+    public unshareFile(id: number, shares: string[]): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&shares=${shares.toString()}`);
+        return this.requestData('POST', `/files/${id}/unshare`, paramaters);
     }
 
     /**
@@ -201,8 +224,8 @@ export class Files extends PutIoHelper {
      *      mkv: Extracted from MKV video file.
      *      opensubtitles: From opensubtitles.
      */
-    public getFileSubtitles(id: number): string {
-        return 'OK';
+    public getFileSubtitles(id: number): Promise<string> {
+        return this.requestData('GET', `/files/${id}/subtitles`, []);
     }
 
     /**
@@ -218,8 +241,10 @@ export class Files extends PutIoHelper {
      * @param key: key used for download subtitle.
      * @param format: Subtitle file format. Default is srt, webvtt can be requested.
      */
-    public downloadSubtitle(id: number, key: string, format: string = 'srt'): string {
-        return 'OK';
+    public downloadSubtitle(id: number, key: string, format: string = 'srt'): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&format=${format}`);
+        return this.requestData('GET', `/files/${id}/subtitles/${key}`, paramaters);
     }
 
     /**
@@ -229,8 +254,10 @@ export class Files extends PutIoHelper {
      * @param id: ID of file
      * @param subtitleKey: Subtitle key for the file. Use “all” as key to get available subtitles for user’s preferred languages.
      */
-    public getHLSPlaylist(id: number, subtitleKey: string): string {
-        return 'OK';
+    public getHLSPlaylist(id: number, subtitleKey: string): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&subtitle_key=${subtitleKey}`);
+        return this.requestData('GET', `/files/${id}/hls/media.m3u8`, paramaters);
     }
 
     /**
@@ -240,8 +267,10 @@ export class Files extends PutIoHelper {
      * @param id: ID of file
      * @param time: Video position in seconds.
      */
-    public setVideoPosition(id: number, time: number ): string {
-        return 'OK';
+    public setVideoPosition(id: number, time: number ): Promise<string> {
+        const paramaters: string[] = [];
+        paramaters.push(`&time=${time}`);
+        return this.requestData('POST', `/files/${id}/start-from`, paramaters);
     }
 
     /**
@@ -250,7 +279,7 @@ export class Files extends PutIoHelper {
      * 
      * @param id: ID of file
      */
-    public deleteVideoPosition(id: number): string {
-        return 'OK';
+    public deleteVideoPosition(id: number): Promise<string> {
+        return this.requestData('POST', `/files/${id}/start-from/delete`, []);
     }
 }
