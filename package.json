@@ -10,8 +10,9 @@
     "precompile": "npm run clean",
     "compile": "tsc",
     "test": "env NODE_ENV=test ./node_modules/.bin/mocha tests/* --recursive --compilers ts:ts-node/register",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "clean": "del-cli js/",
+    "update-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "coverage-report": "nyc npm test && nyc report --reporter=text --reporter=text-summary --reporter=html",
+    "clean": "del-cli js/ && del-cli .nyc_output && del-cli coverage/",
     "lint": "tslint 'ts/**/*.ts?(x)' || exit 1"
   },
   "repository": {
@@ -65,11 +66,6 @@
     ],
     "extension": [
       ".ts"
-    ],
-    "reporter": [
-      "html",
-      "text",
-      "text-summary"
     ],
     "all": true
   }
