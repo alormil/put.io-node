@@ -46,3 +46,6 @@ typings
 
 # Source maps for JS builds
 *.js.map
+
+#Coveralls YML file
+.coveralls.yml
