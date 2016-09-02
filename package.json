@@ -9,7 +9,8 @@
     "preversion": "npm run compile && npm test",
     "precompile": "npm run clean",
     "compile": "tsc",
-    "test": "env NODE_ENV=test ./node_modules/.bin/mocha --recursive js/tests",
+    "test": "nyc env NODE_ENV=test ./node_modules/.bin/mocha tests/* --recursive --compilers ts:ts-node/register --bail",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
     "clean": "del-cli js/",
     "lint": "tslint 'ts/**/*.ts?(x)' || exit 1"
   },
@@ -37,9 +38,12 @@
   "homepage": "https://github.com/alormil/put.io-node#readme",
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.12",
     "del-cli": "^0.2.0",
     "mocha": "^3.0.2",
     "nock": "^8.0.0",
+    "nyc": "^8.1.0",
+    "ts-node": "^1.3.0",
     "tslint": "^3.15.1",
     "tslint-microsoft-contrib": "^2.0.10",
     "typescript": "^1.8.10",
@@ -47,5 +51,26 @@
   },
   "dependencies": {
     "request": "^2.74.0"
+  },
+  "nyc": {
+    "require": [
+      "ts-node/register"
+    ],
+    "include": [
+      "ts/*.ts",
+      "ts/**/*.ts"
+    ],
+     "exclude": [
+       "typings"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "html",
+      "text",
+      "text-summary"
+    ],
+    "all": true
   }
 }
