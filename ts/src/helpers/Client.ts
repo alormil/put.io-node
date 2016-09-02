@@ -7,13 +7,14 @@ import {Zips} from '../methods/Zips';
 
 export class Client {
 
-    private secretToken: string;
     public account: Account = new Account(this);
     public events: Events = new Events(this);
     public files: Files = new Files(this);
     public friends: Friends = new Friends(this);
     public transfers: Transfers = new Transfers(this);
     public zips: Zips = new Zips(this);
+
+    private secretToken: string;
 
     constructor(oAuthToken: string) {
         this.secretToken = oAuthToken;
