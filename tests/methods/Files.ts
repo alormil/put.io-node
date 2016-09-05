@@ -1,4 +1,9 @@
+import * as Module from '../../ts/index';
+import {expect} from 'chai';
+
 describe ('Files Class', () => {
+    const putioClient: Module.Client = new Module.Client('testToken');
+
     describe('GET /files/<id>', () => {
         it('Should return an error if parameters are missing');
         it('Should return an error if parameters are invalid');

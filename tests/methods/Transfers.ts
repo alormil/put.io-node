@@ -1,30 +1,35 @@
-describe ('Friends Class', () => {
-    describe('GET /friends/list', () => {
+import * as Module from '../../ts/index';
+import {expect} from 'chai';
+
+describe ('Transfers Class', () => {
+    const putioClient: Module.Client = new Module.Client('testToken');
+
+    describe('GET /transfers/<id>', () => {
         it('Should return an error if parameters are missing');
         it('Should return an error if parameters are invalid');
         it('Should return valid response if parameters are valid');
     });
-    describe('GET /friends/waiting-requests', () => {
+    describe('GET /transfers/list', () => {
         it('Should return an error if parameters are missing');
         it('Should return an error if parameters are invalid');
         it('Should return valid response if parameters are valid');
     });
-    describe('POST /friends/<username>/approve', () => {
+    describe('POST /transfers/add', () => {
         it('Should return an error if parameters are missing');
         it('Should return an error if parameters are invalid');
         it('Should return valid response if parameters are valid');
     });
-    describe('POST /friends/<username>/deny', () => {
+    describe('POST /transfers/cancel', () => {
         it('Should return an error if parameters are missing');
         it('Should return an error if parameters are invalid');
         it('Should return valid response if parameters are valid');
     });
-    describe('POST /friends/<username>/request', () => {
+    describe('POST /transfers/clean', () => {
         it('Should return an error if parameters are missing');
         it('Should return an error if parameters are invalid');
         it('Should return valid response if parameters are valid');
     });
-    describe('POST /friends/<username>/unfriend', () => {
+    describe('POST /transfers/retry', () => {
         it('Should return an error if parameters are missing');
         it('Should return an error if parameters are invalid');
         it('Should return valid response if parameters are valid');
