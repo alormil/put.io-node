@@ -61,8 +61,8 @@
       "ts/*.ts",
       "ts/**/*.ts"
     ],
-     "exclude": [
-       "typings"
+    "exclude": [
+      "typings"
     ],
     "extension": [
       ".ts"
