@@ -4,6 +4,6 @@
         "default_download_folder": 0,
         "is_invisible": false,
         "subtitle_languages": ["tr", "eng"],
-        "default_subtitle_language": "tr",
+        "default_subtitle_language": "tr"
     }
 }
