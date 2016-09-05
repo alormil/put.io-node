@@ -38,7 +38,10 @@ export class PutIoHelper {
                     if (!error && response.statusCode === 200) {
                         resolve(body);
                     } else {
-                        reject(error);
+                        reject(`Error:
+                                Status:${response.statusCode}
+                                Body:${body}
+                                ErrMsg:${error}`);
                     }
                 });
             });
@@ -48,7 +51,10 @@ export class PutIoHelper {
                     if (!error && response.statusCode === 200) {
                         resolve(body);
                     } else {
-                        reject(error);
+                        reject(`Error:
+                                Status:${response.statusCode}
+                                Body:${body}
+                                ErrMsg:${error}`);
                     }
                 });
             });
