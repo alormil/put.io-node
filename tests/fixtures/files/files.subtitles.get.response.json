@@ -1,0 +1,30 @@
+{
+    "default": "V7mVadfvq34erarjy9tqj0435hgare",
+    "status": "OK",
+    "subtitles": [
+        {
+            "key": "V7mVadfvq34erarjy9tqj0435hgare",
+            "language": null,
+            "name": "MySubtitle1.srt",
+            "source": "folder"
+        },
+        {
+            "key": "V7mVafQ73r9902cjgbdfkvj2094css",
+            "language": "English",
+            "name": "MySubtitle2.srt",
+            "source": "mkv"
+        },
+        {
+            "key": "V7mVafQ7LC_B7FKcG3pELfos2URzh8I",
+            "language": "English",
+            "name": "MySubtitle3.srt",
+            "source": "opensubtitles"
+        },
+        {
+            "key": "V7mVafQ7LC_B7FKcG3pELfos2URzh8IO1kvjZHNY=",
+            "language": "English",
+            "name": "MySubtitle4.srt",
+            "source": "opensubtitles"
+        }
+    ]
+}

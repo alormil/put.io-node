@@ -1,0 +1,15 @@
+{
+    "shared-with": [
+        {
+            "user_name": "John Doe",
+            "user_avatar_url": "/avatars/johndoe.png",
+            "share_id": 3913572317
+        },
+        {
+            "user_name": "Jane Doe",
+            "user_avatar_url": "/avatars/janedoe.png",
+            "share_id": 3913572318
+        }
+    ],
+    "status": "OK"
+}
