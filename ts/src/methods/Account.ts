@@ -24,20 +24,12 @@ export class Account extends PutIoHelper {
      * 
      * Updates user preferences. Only sent parameters are updated.
      * 
-     * @param defaultDownloadFolder: Optional. File ID for default location. 0 is the root folder.
-     * @param isInvisible: Optional. Boolean value (true or false). Enables invisible mode.
-     * @param subtitleLanguages: Optional. String of comma separated ISO639-2 codes (e.g., ‘eng,tr’). Maximum length of choices is 2.
+     * @param settings: Optional string value of JSON object containing key values of what account setting to update
      */
-    public setAccountSetting(defaultDownloadFolder ?: number, isInvisible ?: boolean, subtitleLanguages ?: string): Promise<string> {
+    public setAccountSettings(settings ?: string): Promise<string> {
         const paramaters: string[] = [];
-        if (defaultDownloadFolder !== undefined) {
-            paramaters.push(`&default_download_folder=${defaultDownloadFolder}`);
-        }
-        if (isInvisible !== undefined) {
-            paramaters.push(`&is_invisible=${isInvisible}`);
-        }
-        if (subtitleLanguages !== undefined) {
-            paramaters.push(`&subtitle_languages=${subtitleLanguages}`);
+        if (settings !== undefined) {
+            paramaters.push(settings);
         }
         return this.requestData('POST', 'account/settings', paramaters);
     }
