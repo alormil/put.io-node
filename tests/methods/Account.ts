@@ -97,7 +97,7 @@ describe ('Account Method', () => {
                 nextepisode : false
             };
 
-            putioClient.account.setAccountSetting(JSON.stringify(settingChanges)).then((result: string) => {
+            putioClient.account.setAccountSettings(JSON.stringify(settingChanges)).then((result: string) => {
                 expect(result).to.equal(JSON.stringify(info.fixtureData));
                 done();
             }).catch(err => {
@@ -119,7 +119,7 @@ describe ('Account Method', () => {
                 invalid_field_2 : true
             };
 
-            putioClient.account.setAccountSetting(JSON.stringify(settingChanges)).then((result: string) => {
+            putioClient.account.setAccountSettings(JSON.stringify(settingChanges)).then((result: string) => {
                 expect(result).to.equal(JSON.stringify(info.fixtureData));
                 done();
             }).catch(err => {
