@@ -21,18 +21,19 @@ export class PutIoHelper {
     protected requestData(requestType: string, apiEndpoint: string, apiParameters: string[]): Promise<string> {
         // URL that will be used to make the API is constructured
         let apiCall = `${this.API_URL}${apiEndpoint}?oauth_token=${this.putioClient.oAuthToken}`;
-        apiParameters.forEach(element => {
-            apiCall = apiCall.concat(element);
-        });
-        // Format the request so that we only return JSON response
-        const options = {
-            url: `${apiCall}`,
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
+
         // Return Promise object with GET or POST response
         if (requestType === 'GET') {
+            apiParameters.forEach(element => {
+                apiCall = apiCall.concat(element);
+            });
+            // Format the request so that we only return JSON response
+            const options = {
+                url: `${apiCall}`,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
             return new Promise<string>((resolve, reject) => {
                 request.get(options, (error, response, body) => {
                     if (!error && response.statusCode === 200) {
@@ -46,17 +47,41 @@ export class PutIoHelper {
                 });
             });
         } else {
+            // In this scenario we are calling a POST request either with some or no parameters
+            // Format the request so that we only return JSON response
+            const options = {
+                url: `${apiCall}`,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
             return new Promise<string>((resolve, reject) => {
-                request.post(options, (error, response, body) => {
-                    if (!error && response.statusCode === 200) {
-                        resolve(body);
-                    } else {
-                        reject(`Error:
-                                Status:${response.statusCode}
-                                Body:${body}
-                                ErrMsg:${error}`);
-                    }
-                });
+                // In the case we are passing parameters we are adding them using URL-Encoded Forms
+                //  So we will be passing the values as JSON object
+                if (apiParameters.length > 0) {
+                    request.post(options, (error, response, body) => {
+                        if (!error && response.statusCode === 200) {
+                            resolve(body);
+                        } else {
+                            reject(`Error:
+                                    Status:${response.statusCode}
+                                    Body:${body}
+                                    ErrMsg:${error}`);
+                        }
+                    }).form(JSON.parse(apiParameters[0]));
+                } else {
+                    // Otherwise we do a regular POST request
+                    request.post(options, (error, response, body) => {
+                        if (!error && response.statusCode === 200) {
+                            resolve(body);
+                        } else {
+                            reject(`Error:
+                                    Status:${response.statusCode}
+                                    Body:${body}
+                                    ErrMsg:${error}`);
+                        }
+                    });
+                }
             });
         }
     }
