@@ -1,15 +1,43 @@
 {
-    "info": {
-        "username": "cenk",
-        "mail": "cenk@gmail.com",
-        "plan_expiration_date": "2014-03-04T06:33:30",
-        "subtitle_languages": ["tr", "eng"],
-        "default_subtitle_language": "tr",
-        "disk": {
-            "avail": 20849243836,
-            "used": 32837847364,
-            "size": 53687091200
-        }
+  "info": {
+    "account_active": true,
+    "avatar_url": "https://secure.gravatar.com/avatar/660cddd01a41c3f4abad409053209dfa.jpg?s=50",
+    "days_until_files_deletion": 0,
+    "default_subtitle_language": "eng",
+    "disk": {
+      "avail": 20849243836,
+      "size": 32837847364,
+      "used": 53687091200
     },
-    "status": "OK"
+    "has_voucher": 0,
+    "mail": "cenk@gmail.com",
+    "passive_account": false,
+    "plan_expiration_date": "2014-03-04T06:33:30",
+    "settings": {
+      "callback_url": "",
+      "default_download_folder": 0,
+      "default_subtitle_language": "eng",
+      "download_folder_unset": false,
+      "extraction_default": false,
+      "is_invisible": true,
+      "nextepisode": true,
+      "private_download_host_ip": null,
+      "pushover_token": "",
+      "routing": "Beauharnois",
+      "sorting": "NAME_ASC",
+      "start_from": true,
+      "subtitle_languages": [
+        "eng"
+      ],
+      "trSorting": "DATEADDED_DESC",
+      "use_soon": true
+    },
+    "simultaneous_download_limit": 10,
+    "subtitle_languages": [
+      "eng"
+    ],
+    "user_id": 885962,
+    "username": "cenk"
+  },
+  "status": "OK"
 }

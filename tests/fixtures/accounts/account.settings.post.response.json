@@ -1,3 +1,7 @@
 {
-    "response": "settings_updated"
+  "new_login_token": "g7a88uXK265qToFeqtkV",
+  "password_reset": false,
+  "private_download_host_ip": null,
+  "response": "settings_updated",
+  "status": "OK"
 }

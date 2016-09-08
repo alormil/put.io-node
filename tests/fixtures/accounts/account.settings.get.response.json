@@ -1,9 +1,22 @@
 {
-    "status": "OK",
-    "settings": {
-        "default_download_folder": 0,
-        "is_invisible": false,
-        "subtitle_languages": ["tr", "eng"],
-        "default_subtitle_language": "tr"
-    }
+  "settings": {
+    "callback_url": "",
+    "default_download_folder": 0,
+    "default_subtitle_language": "eng",
+    "download_folder_unset": false,
+    "extraction_default": false,
+    "is_invisible": true,
+    "nextepisode": true,
+    "private_download_host_ip": null,
+    "pushover_token": "",
+    "routing": "Beauharnois",
+    "sorting": "NAME_ASC",
+    "start_from": true,
+    "subtitle_languages": [
+      "eng"
+    ],
+    "trSorting": "DATEADDED_DESC",
+    "use_soon": true
+  },
+  "status": "OK"
 }
