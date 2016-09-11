@@ -1,21 +1,24 @@
 {
-    "status": "OK",
     "events": [
         {
-            "transfer_name": "4th Rock from The Sun",
             "created_at": "2014-12-09 22:31:42",
-            "transfer_size": 14872103214,
             "file_id": 257901855,
+            "id": 93783624,
+            "source": "magnet:?xt=OU6SSjGUV6WGvTBSO8KyAAVXTA8eZvicJi6ocLotpp21yCqI3bnOqa9UCcuRMqNUfmcCv2TGzRVXkStXIWk4gUF4LkflpqZooOrMq9U9A8l3AlyHw5CGnUoXNXqW01ObDzO1cxmRoQpHoQUJm2VHnesQaVn8Ry87tEPqplbrbHZtltO6ZmgG8yhZq6tbJq6HHZ6D8sibTfsBoPkj4SbxT6g9i4PoenBqpNq5pRCj3au93jRHOG3CUkMFtVLbwKmD1wLmqXAv6z3y9mzOyp5YMaR0kZAnZUl8uN3TzsfXtY0EPT7I7pguLf5Nv",
+            "transfer_name": "4th Rock from The Sun",
+            "transfer_size": 14872103214,
             "type": "transfer_completed"
         },
         {
-             "file_name": "Managing Scale and Complexity.mp4",
              "created_at": "2014-10-22 15:23:10",
-             "sharing_user_name": "johndoe",
              "file_id": 117645943,
+             "id": 75352193,
+             "file_name": "Managing Scale and Complexity.mp4",
+             "sharing_user_name": "johndoe",
              "file_size": 73454320,
              "type": "file_shared"
         }
     ],
+  "status": "OK"
 
 }
