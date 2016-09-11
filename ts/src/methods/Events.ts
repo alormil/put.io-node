@@ -10,12 +10,4 @@ export class Events extends PutIoHelper {
     public getEventsList(): Promise<string> {
         return this.requestData('GET', 'events/list', []);
     }
-
-    /**
-     * 
-     * Clear all dashboard events. User’s home screen (dashboard) which uses same data will also be cleared at Put.io website.
-     */
-    public deleteEvents(): Promise<string> {
-        return this.requestData('POST', 'events/delete', []);
-    }
 }
