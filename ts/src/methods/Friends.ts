@@ -12,6 +12,21 @@ export class Friends extends PutIoHelper {
 
     /**
      * 
+     * Search friends.
+     * 
+     * @param username: friend's username or email
+     */
+    public searchUsers(usernameOrEmail: string): Promise<string> {
+        const paramaters: string[] = [];
+        const searchTeam = {
+            name : `${usernameOrEmail}`
+        };
+        paramaters.push(JSON.stringify(searchTeam));
+        return this.requestData('POST', 'friends/user-search', paramaters);
+    }
+
+    /**
+     * 
      * Lists incoming friend requests.
      */
     public getFriendRequests(): Promise<string> {
@@ -25,7 +40,7 @@ export class Friends extends PutIoHelper {
      * @param username: friend's username
      */
     public sendFriendRequest(username: string): Promise<string> {
-        return this.requestData('POST', `friends/${username}/request`, []);
+        return this.requestData('GET', `friends/${username}/request`, []);
     }
 
     /**
