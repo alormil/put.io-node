@@ -1,0 +1,14 @@
+{
+  "disk_avail": 54285948875,
+  "ret": [
+    {
+      "dltype": 1,
+      "file_size": 0,
+      "human_size": "unknown",
+      "name": "A video",
+      "type_name": "folder",
+      "url": "magnet:?xt=urn:btih:194a4c341487fd12d36718054c1e8fef4358b2ab3"
+    }
+  ],
+  "status": "OK"
+}

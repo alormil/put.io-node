@@ -23,7 +23,15 @@ describe.skip ('Transfers Class', () => {
 
         });
     });
-    describe('POST /transfers/add', () => {
+    describe('POST /transfers/add-multi', () => {
+        it('Should return valid response if parameters are valid', (done: Function) => {
+
+        });
+        it('Should return an error if bad request', (done: Function) => {
+
+        });
+    });
+    describe('POST /transfers/info', () => {
         it('Should return valid response if parameters are valid', (done: Function) => {
 
         });

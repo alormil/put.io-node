@@ -14,21 +14,18 @@ export class Transfers extends PutIoHelper {
      * 
      * Adds a new transfer.
      * 
-     * @param url: Location of the file to be downloaded.
-     * @param saveParentId: Save location of the transfer. This defaults to 0 (which means root).
-     * @param extract: Extract after download? (default=False)
-     * @param callbackUrl: We POST the transfer’s metadata to this URL after the download is finished. (optional)
-     * 
+     * @params urls: Will be a an array of strings wich will contain the following info :
+     *      url: Location of the file to be downloaded.
+     *      save_parent_id: Save location of the transfer. This defaults to 0 (which means root).
+     *      email_when_complete: If we send an email to user after completion
      */
-    public addTransfer(url: string, saveParentId: number = 0, extract: boolean = false, callbackUrl ?: string): Promise<string> {
+    public addTransfer(urls: string[]): Promise<string> {
         const paramaters: string[] = [];
-        paramaters.push(`&url=${url}`);
-        paramaters.push(`&save_parent_id=${saveParentId}`);
-        paramaters.push(`&extract=${extract}`);
-        if (callbackUrl !== undefined) {
-            paramaters.push(`&callback_url=${callbackUrl}`);
-        }
-        return this.requestData('POST', 'transfers/add', paramaters);
+        const transferURL = {
+            urls : `[${urls.toString}]`
+        };
+        paramaters.push(JSON.stringify(transferURL));
+        return this.requestData('POST', 'transfers/add-multi', paramaters);
     }
 
     /**
@@ -43,13 +40,31 @@ export class Transfers extends PutIoHelper {
 
     /**
      * 
+     * Returns a transfer’s properties.
+     * 
+     * @param id: ID of the failed download.
+     */
+    public getTransferInfo(url: string): Promise<string> {
+        const paramaters: string[] = [];
+        const transferURL = {
+            urls : `${url}`
+        };
+        paramaters.push(JSON.stringify(transferURL));
+        return this.requestData('POST', 'transfers/info', paramaters);
+    }
+
+    /**
+     * 
      * Retry previously failed transfer.
      * 
      * @param id: ID of the failed download.
      */
     public retryTransfer(id: number): Promise<string> {
         const paramaters: string[] = [];
-        paramaters.push(`&id=${id}`);
+        const transferId = {
+            id : `${id}`
+        };
+        paramaters.push(JSON.stringify(transferId));
         return this.requestData('POST', 'transfers/retry', paramaters);
     }
 
@@ -61,7 +76,10 @@ export class Transfers extends PutIoHelper {
      */
     public cancelTransfers(transferIds: number[]): Promise<string> {
         const paramaters: string[] = [];
-        paramaters.push(`&transfer_ids=${transferIds.toString()}`);
+        const transferIdsToCancel = {
+            transfer_ids : `${transferIds.toString()}`
+        };
+        paramaters.push(JSON.stringify(transferIdsToCancel));
         return this.requestData('POST', 'transfers/cancel', paramaters);
     }
 
