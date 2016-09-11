@@ -1,11 +1,12 @@
 {
-    "status": "OK",
     "friends": [
         {
-        "name": "foo"
+            "name": "foo"
         },
         {
-         "name": "bar"
+            "name": "bar"
         }
-    ]
+    ],
+    "status": "OK",
+    "total": 0
 }
