@@ -10,7 +10,7 @@ describe ('Account Method', () => {
     describe('GET /account/info', () => {
         it('Should return valid response if parameters are valid', (done: Function) => {
 
-            const info = new Fixtures('../fixtures/accounts/account.info.get.response.json');
+            const info: Fixtures = new Fixtures('../fixtures/accounts/account.info.get.response.json');
             nock('https://api.put.io/v2')
             .defaultReplyHeaders({'Content-Type': 'application/json'})
             .get('/account/info')
@@ -28,7 +28,7 @@ describe ('Account Method', () => {
 
         it('Should return an error if bad request', (done: Function) => {
 
-            const info = new Fixtures('../fixtures/accounts/account.info.get.response.json');
+            const info: Fixtures = new Fixtures('../fixtures/accounts/account.info.get.response.json');
             nock('https://api.put.io/v2')
             .defaultReplyHeaders({'Content-Type': 'application/json'})
             .get('/account/info')
@@ -48,7 +48,7 @@ describe ('Account Method', () => {
     describe('GET /account/settings', () => {
         it('Should return valid response if parameters are valid', (done: Function) => {
 
-            const info = new Fixtures('../fixtures/accounts/account.settings.get.response.json');
+            const info: Fixtures = new Fixtures('../fixtures/accounts/account.settings.get.response.json');
             nock('https://api.put.io/v2')
             .defaultReplyHeaders({'Content-Type': 'application/json'})
             .get('/account/settings')
@@ -66,7 +66,7 @@ describe ('Account Method', () => {
 
         it('Should return an error if bad request', (done: Function) => {
 
-            const info = new Fixtures('../fixtures/accounts/account.settings.get.response.json');
+            const info: Fixtures = new Fixtures('../fixtures/accounts/account.settings.get.response.json');
             nock('https://api.put.io/v2')
             .defaultReplyHeaders({'Content-Type': 'application/json'})
             .get('/account/settings')
@@ -85,7 +85,7 @@ describe ('Account Method', () => {
     describe('POST /account/settings', () => {
         it('Should return valid response if parameters are valid', (done: Function) => {
 
-            const info = new Fixtures('../fixtures/accounts/account.settings.post.response.json');
+            const info: Fixtures = new Fixtures('../fixtures/accounts/account.settings.post.response.json');
             nock('https://api.put.io/v2')
             .defaultReplyHeaders({'Content-Type': 'application/json'})
             .post('/account/settings')
@@ -107,7 +107,7 @@ describe ('Account Method', () => {
         });
         it('Should return an error if parameters are invalid', (done: Function) => {
 
-            const info = new Fixtures('../fixtures/accounts/account.settings.post.response.json');
+            const info: Fixtures = new Fixtures('../fixtures/accounts/account.settings.post.response.json');
             nock('https://api.put.io/v2')
             .defaultReplyHeaders({'Content-Type': 'application/json'})
             .post('/account/settings')

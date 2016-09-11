@@ -11,7 +11,7 @@ describe ('Event Class', () => {
 
         it('Should return valid response if parameters are valid', (done: Function) => {
 
-            const info = new Fixtures('../fixtures/events/events.lists.get.response.json');
+            const info: Fixtures = new Fixtures('../fixtures/events/events.lists.get.response.json');
             nock('https://api.put.io/v2')
             .defaultReplyHeaders({'Content-Type': 'application/json'})
             .get('/events/list')
@@ -30,7 +30,7 @@ describe ('Event Class', () => {
 
         it('Should return an error if bad request', (done: Function) => {
 
-            const info = new Fixtures('../fixtures/events/events.lists.get.response.json');
+            const info: Fixtures = new Fixtures('../fixtures/events/events.lists.get.response.json');
             nock('https://api.put.io/v2')
             .defaultReplyHeaders({'Content-Type': 'application/json'})
             .get('/events/list')
