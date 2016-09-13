@@ -10,7 +10,10 @@ export class Zips extends PutIoHelper {
      */
     public createZip(fileIds: number[]): Promise<string> {
         const paramaters: string[] = [];
-        paramaters.push(`&file_ids=${fileIds.toString()}`);
+        const transferIdsToCancel = {
+            file_ids : `${fileIds.toString()}`
+        };
+        paramaters.push(JSON.stringify(transferIdsToCancel));
         return this.requestData('POST', 'zips/create', paramaters);
     }
 
