@@ -56,12 +56,16 @@ export class Files extends PutIoHelper {
      * Example CURL line
      *      curl -i -F file=@/path/to/the/file 'https://upload.put.io/v2/files/upload?oauth_token=KD8D03MF'
      */
-    public uploadFile(file: string, filename: string, parentId: number = 0): Promise<string> {
+    public uploadFile(file: string, filename?: string, parentId?: number): Promise<string> {
         const paramaters: string[] = [];
-        paramaters.push(`&file=${file}`);
-        paramaters.push(`&filename=${filename}`);
-        paramaters.push(`&parent_id=${parentId}`);
-        return this.requestData('POST', 'files/upload', paramaters);
+        paramaters.push(file);
+        if (filename !== undefined) {
+            paramaters.push(filename);
+        }
+        if (parentId !== undefined) {
+            paramaters.push(parentId.toString());
+        }
+        return this.uploadData('POST', 'files/upload', paramaters);
     }
 
     /**

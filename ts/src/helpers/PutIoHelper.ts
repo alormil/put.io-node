@@ -1,5 +1,6 @@
 import {Client} from './Client';
 import * as request from 'request';
+import * as fs from 'fs';
 
 export class PutIoHelper {
 
@@ -84,5 +85,57 @@ export class PutIoHelper {
                 }
             });
         }
+    }
+
+    /**
+     * 
+     * Executes POST requests to put.io's API and also passes the proper paramaters
+     * 
+     * @param requestType: Type of API call that is made, can either be GET or POST
+     * @param apiEndpoint: Endpoint of the put.io API that will be called
+     * @param apiParameters: API parameters that will be passed to API call
+     * 
+     * This function handles the exeption that is needed to upload files
+     */
+    protected uploadData(requestType: string, apiEndpoint: string, apiParameters: string[]): Promise<string> {
+
+        const apiCall = `https://upload.put.io/v2/files/upload?oauth_token=${this.putioClient.oAuthToken}`;
+        let formData = {};
+
+        if (apiParameters.length === 1) {
+            formData = {
+                file: fs.createReadStream(apiParameters[0])
+            };
+        } else if (apiParameters.length === 2) {
+            if (typeof apiParameters[1] === 'string' ) {
+                formData = {
+                    file: fs.createReadStream(apiParameters[0]),
+                    filename: apiParameters[1]
+                };
+            } else {
+                formData = {
+                    file: fs.createReadStream(apiParameters[0]),
+                    parent_id: apiParameters[1]
+                };
+            }
+        } else {
+            formData = {
+                file: fs.createReadStream(apiParameters[0]),
+                filename: apiParameters[1],
+                parent_id: apiParameters[2]
+            };
+        }
+        return new Promise<string>((resolve, reject) => {
+            request.post({url: `${apiCall}`, formData: formData}, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    resolve(body);
+                } else {
+                    reject(`Error:
+                            Status:${response.statusCode}
+                            Body:${body}
+                            ErrMsg:${error}`);
+                }
+            });
+        });
     }
 }
