@@ -1,19 +1,22 @@
-  {
-    "file":
-        {
-            "content_type": "text/plain",
-            "crc32": "66a1512f",
-            "created_at": "2013-09-07T21:32:03",
-            "first_accessed_at": null,
-            "icon": "https://put.io/images/file_types/text.png",
-            "id": 6546533,
-            "is_mp4_available": false,
-            "is_shared": false,
-            "name": "MyFile.txt",
-            "opensubtitles_hash": null,
-            "parent_id": 123,
-            "screenshot": null,
-            "size": 92
-        },
-    "status": "OK"
+{
+    "status": "OK",
+    "file": {
+        "is_shared": false,
+        "name": "test.txt",
+        "screenshot": null,
+        "first_accessed_at": null,
+        "file_type": "TEXT",
+        "created_at": "2016-09-18T21:30:18.470946",
+        "folder_type": "REGULAR",
+        "opensubtitles_hash": null,
+        "parent_id": 0,
+        "is_mp4_available": false,
+        "extension": "",
+        "content_type": "text/plain",
+        "crc32": "b095e5e3",
+        "is_hidden": false,
+        "icon": "https://put.io/images/file_types/text.png",
+        "id": 425143313,
+        "size": 12
+    }
 }
