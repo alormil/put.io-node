@@ -107,7 +107,7 @@ export class PutIoHelper {
                 file: fs.createReadStream(apiParameters[0])
             };
         } else if (apiParameters.length === 2) {
-            if (typeof apiParameters[1] === 'string' ) {
+            if ( Number.isNaN(Number(apiParameters[1]))) {
                 formData = {
                     file: fs.createReadStream(apiParameters[0]),
                     filename: apiParameters[1]
