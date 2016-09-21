@@ -1,8 +1,0 @@
-HTTP/1.1 302 FOUND
-Server: nginx
-Date: Thu, 09 Feb 2012 15:58:53 GMT
-Content-Type: text/html; charset=utf-8
-Connection: keep-alive
-Keep-Alive: timeout=60
-Content-Length: 385
-Location: http://s01.put.io/v2/files/26205116/download?token=4a63387841ce11e1a047001018321b64
