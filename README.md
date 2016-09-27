@@ -25,6 +25,40 @@ $ git clone git@github.com:alormil/put.io-node.git
 ```
 ## Usage
 
+``` javascript
+const Client = require('put.io-node').Client;
+
+// Initialize client with your own app token
+const apiClient = new Client('XYZTOKEN');
+
+// Account
+// Retrieve Account Info
+apiClient.account.getAccountInfo().then((result) => console.log(JSON.parse(result))); 
+
+// Friends
+// Send Friend Request
+apiClient.friends.sendFriendRequest('Bob').then((result) => console.log(JSON.parse(result)));
+
+// Zips
+// Create Zip from File list
+apiClient.zips.createZip([123,556,989]).then((result) => console.log(JSON.parse(result)));
+
+// Transfers
+// Get List of Transfers
+apiClient.transfers.getTransfersList().then((result) => console.log(JSON.parse(result)));
+
+// Files
+// Create Folder
+apiClient.files.createFolder('Folder123', 0).then((result) => console.log(JSON.parse(result)));
+
+// Events
+// Get List of Events
+apiClient.events.getEventsList().then((result) => console.log(JSON.parse(result)));
+```
+All functions return string promises, make sure you convert these strings to JSON objects for future manipulation. 
+I will add examples for each function call in the Wiki, but feel free to have a look at the source code in order to see which functions are available.
+
+
 ## Tests
 
 ``` bash
