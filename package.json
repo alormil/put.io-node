@@ -2,8 +2,8 @@
   "name": "put.io-node",
   "version": "1.0.0",
   "description": "A Node.js wrapper for put.io APIv2 http://put.io",
-  "main": "js/index.js",
-  "typings": "js/index.d.ts",
+  "main": "js/ts/index.js",
+  "typings": "js/ts/index.d.ts",
   "scripts": {
     "postinstall": "typings install",
     "preversion": "npm run compile && npm test",
