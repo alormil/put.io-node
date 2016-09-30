@@ -8,7 +8,7 @@ A Node.js wrapper for put.io APIv2 https://api.put.io/v2/docs/
 
 It supports all the methods & functions that put.io's API provides: Files, Transfers, Zips, Friends, Account, Events.
 
-Take a look at [put.io's API documentation](https://api.put.io/v2/docs/) to get started.
+Take a look at the [Wiki](https://github.com/alormil/put.io-node/wiki) and [put.io's API documentation](https://api.put.io/v2/docs/) to get started.
 
 <img src="https://put.io/statics/img/logo.svg" alt="" height="25">
 
