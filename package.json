@@ -1,6 +1,6 @@
 {
   "name": "put.io-node",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Node.js wrapper for put.io APIv2 http://put.io",
   "main": "js/ts/index.js",
   "typings": "js/ts/index.d.ts",
