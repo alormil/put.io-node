@@ -16,7 +16,7 @@ class Friends extends PutIoHelper_1.PutIoHelper {
         return this.requestData('GET', 'friends/waiting-requests', []);
     }
     sendFriendRequest(username) {
-        return this.requestData('GET', `friends/${username}/request`, []);
+        return this.requestData('POST', `friends/${username}/request`, []);
     }
     approveFriendRequest(username) {
         return this.requestData('POST', `friends/${username}/approve`, []);

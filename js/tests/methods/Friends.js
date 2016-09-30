@@ -103,13 +103,13 @@ describe('Friends Class', () => {
             });
         });
     });
-    describe('GET /friends/<username>/request', () => {
+    describe('POST /friends/<username>/request', () => {
         it('Should return valid response if parameters are valid', (done) => {
             const testName = 'testUserName';
-            const info = new Fixtures_1.Fixtures('../fixtures/friends/friends.send.request.get.response.json');
+            const info = new Fixtures_1.Fixtures('../fixtures/friends/friends.send.request.post.response.json');
             nock('https://api.put.io/v2')
                 .defaultReplyHeaders({ 'Content-Type': 'application/json' })
-                .get(`/friends/${testName}/request`)
+                .post(`/friends/${testName}/request`)
                 .query(true)
                 .reply(200, info.fixtureData);
             putioClient.friends.sendFriendRequest(testName).then((result) => {
@@ -122,10 +122,10 @@ describe('Friends Class', () => {
         });
         it('Should return an error if bad request', (done) => {
             const testName = 'testUserName';
-            const info = new Fixtures_1.Fixtures('../fixtures/friends/friends.send.request.get.response.json');
+            const info = new Fixtures_1.Fixtures('../fixtures/friends/friends.send.request.post.response.json');
             nock('https://api.put.io/v2')
                 .defaultReplyHeaders({ 'Content-Type': 'application/json' })
-                .get(`/friends/${testName}/request`)
+                .post(`/friends/${testName}/request`)
                 .query(true)
                 .reply(400, 'Bad Request');
             putioClient.friends.sendFriendRequest(testName).then((result) => {

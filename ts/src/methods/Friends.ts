@@ -40,7 +40,7 @@ export class Friends extends PutIoHelper {
      * @param username: friend's username
      */
     public sendFriendRequest(username: string): Promise<string> {
-        return this.requestData('GET', `friends/${username}/request`, []);
+        return this.requestData('POST', `friends/${username}/request`, []);
     }
 
     /**
